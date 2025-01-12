@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 import HeroButton from "./hero-button";
 
@@ -12,19 +12,9 @@ gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [hasClicked, setHasClicked] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadedVideos, setLoadedVideos] = useState(0);
 
   const totalVideos = 4;
   const nextVideoRef = useRef<HTMLVideoElement | null>(null);
-
-  const handleVideoLoad = () => {
-    setLoadedVideos((prev) => prev + 1);
-  };
-
-  useEffect(() => {
-    setIsLoading(false);
-  }, [loadedVideos]);
 
   const upcomingVideoIndex = (currentIndex % totalVideos) + 1;
 
@@ -91,22 +81,12 @@ const Hero = () => {
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
-      {isLoading && (
-        <div className="absolute z-[100] flex h-dvh w-screen items-center justify-center overflow-hidden bg-violet-50">
-          <div className="three-body">
-            <div className="three-body__dot" />
-            <div className="three-body__dot" />
-            <div className="three-body__dot" />
-          </div>
-        </div>
-      )}
-
       <div
         id="video-frame"
         className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75"
       >
         <div>
-          <div className="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%) absolute left-1/2 top-1/2 z-50 size-64 translate-x-[-50%] translate-y-[-50%] cursor-pointer overflow-hidden rounded-lg">
+          <div className="absolute left-1/2 top-1/2 z-50 size-64 translate-x-[-50%] translate-y-[-50%] cursor-pointer overflow-hidden rounded-lg [clip-path:polygon(0_0,_100%_0,_100%_100%,_0_100%)]">
             <div
               onClick={handleMiniVdClick}
               className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
@@ -118,7 +98,6 @@ const Hero = () => {
                 muted
                 id="current-video"
                 className="size-64 origin-center scale-150 object-cover object-center"
-                onLoadedData={handleVideoLoad}
               />
             </div>
           </div>
@@ -129,17 +108,15 @@ const Hero = () => {
             muted
             id="next-video"
             className="invisible absolute left-1/2 top-1/2 z-20 size-64 translate-x-[-50%] translate-y-[-50%] object-cover object-center"
-            onLoadedData={handleVideoLoad}
           />
           <video
             src={getVideoSrc(
               currentIndex === totalVideos - 1 ? 1 : currentIndex,
             )}
-            autoPlay
+            // autoPlay
             loop
             muted
             className="absolute left-0 top-0 size-full object-cover object-center"
-            onLoadedData={handleVideoLoad}
           />
         </div>
         <h1 className="absolute bottom-5 right-5 z-40 font-zentry text-5xl font-black uppercase text-blue-75 sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem]">

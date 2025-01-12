@@ -5,7 +5,7 @@ type HeroButton = {
   id: string;
   title: string;
   rightIcon?: ReactNode;
-  leftIcon: ReactNode;
+  leftIcon?: ReactNode;
   containerClass: string;
 };
 
