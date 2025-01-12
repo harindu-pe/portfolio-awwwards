@@ -2,14 +2,16 @@ import About from "@/components/about";
 import Features from "@/components/features";
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
+import Story from "@/components/story";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen w-screen overflow-x-hidden">
+    <main className="relative min-h-screen w-screen overflow-x-hidden overflow-y-hidden">
       <Navbar />
       <Hero />
       <About />
       <Features />
+      <Story />
     </main>
   );
 }
