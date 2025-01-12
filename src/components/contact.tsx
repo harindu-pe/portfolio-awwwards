@@ -8,7 +8,7 @@ type ImageClipBoxProps = {
 
 const ImageClipBox = ({ src, clipClass }: ImageClipBoxProps) => (
   <div className={clipClass}>
-    <img src={src} />
+    <img src={src} alt="" />
   </div>
 );
 

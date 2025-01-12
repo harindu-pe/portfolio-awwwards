@@ -1,14 +1,14 @@
 "use client";
 
 import gsap from "gsap";
-import { useRef } from "react";
+import { MouseEventHandler, useRef } from "react";
 import AnimatedTitle from "./animated-title";
 import HeroButton from "./hero-button";
 
 const Story = () => {
   const frameRef = useRef<HTMLImageElement | null>(null);
 
-  const handleMouseMove = (e: any) => {
+  const handleMouseMove: MouseEventHandler<HTMLImageElement> = (e) => {
     const { clientX, clientY } = e;
     const element = frameRef.current;
 

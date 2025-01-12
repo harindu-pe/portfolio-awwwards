@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import AnimatedTitle from "./animated-title";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,9 +54,10 @@ const About = () => {
           id="mask-clip-path"
           className="absolute left-1/2 top-0 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl [clip-path:polygon(0%_0%,_100%_0%,_100%_100%,_0%_100%)] md:w-[30vw]"
         >
-          <img
-            src="img/about.webp"
+          <Image
+            src="/img/about.webp"
             alt="Background"
+            fill
             className="absolute left-0 top-0 size-full object-cover"
           />
         </div>
